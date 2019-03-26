@@ -59,7 +59,7 @@ def compare_files(filename_one, filename_two):
 	print("-" * 40)
 
 	number_of_lines_plagiarised = len(list(filter(lambda x: x[0] == ' ', result)))
-	file_one_plagiarism_percentage = get_plagiarism_percentage(number_of_lines_plagiarised, len(file_one))
-	file_two_plagiarism_percentage = get_plagiarism_percentage(number_of_lines_plagiarised, len(file_two))
+	file_one_plagiarism_percentage = get_plagiarism_percentage(number_of_lines_plagiarised, len(file_one) + len(file_two))
+	file_two_plagiarism_percentage = get_plagiarism_percentage(number_of_lines_plagiarised, len(file_one) + len(file_two))
 
 	return file_one_plagiarism_percentage, file_two_plagiarism_percentage, result
