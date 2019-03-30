@@ -1,6 +1,8 @@
 import config
 import os
 import termcolor
+import functools
+import re
 
 def check_file(filename):
 	''' Checks if the file is written in allowed programming languages
@@ -24,8 +26,24 @@ def check_file(filename):
 def get_file_path(filename):
 	return config.SOURCE_CODE_FILEPATH + filename 
 
-def remove_comments(list_lines):
-	return list_lines
+def remove_comments_in_c(string):
+    string = re.sub(re.compile("/\*.*?\*/",re.DOTALL ) ,"" ,string) # remove all occurance streamed comments (/*COMMENT */) from string
+    string = re.sub(re.compile("//.*?\n" ) ,"" ,string) # remove all occurance singleline comments (//COMMENT\n ) from string
+    return string
+
+def join_lines(lines_list):
+	return functools.reduce(lambda str_a, str_b: str_a + str_b, lines_list)
+
+def split_lines(lines_string):
+	lines_list=lines_string.split('\n')
+	return list(map(lambda x: x + '\n', lines_list))
+
+
+def remove_comments(lines_list):
+	lines_string = join_lines(lines_list)
+	lines_string = remove_comments_in_c(lines_string)
+	return split_lines(lines_string)
+
 
 def get_readlines(filepath, remove_comments_bool):
 	if not check_file(filepath):
@@ -35,8 +53,7 @@ def get_readlines(filepath, remove_comments_bool):
 
 	#Only for type one
 	if remove_comments_bool:
-		remove_comments(lines)
-
+		lines = remove_comments(lines)
 	return lines
 
 def extract_files(filename_one, filename_two, remove_comments_bool):
