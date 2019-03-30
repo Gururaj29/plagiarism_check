@@ -4,6 +4,17 @@ import termcolor
 import functools
 import re
 
+re_comment_strings_for_c_and_cpp = {
+	"MULTI_LINES_COMMENT" : "/\*.*?\*/",
+	"SINGLE_LINE_COMMENT" : "//.*?\n"
+}
+
+re_comment_strings_for_py = {
+	"MULTI_LINES_COMMENT" : "/\*.*?\*/",
+	"SINGLE_LINE_COMMENT" : "\#.*?\n"
+}
+
+
 def check_file(filename):
 	''' Checks if the file is written in allowed programming languages
 	'''
@@ -26,22 +37,23 @@ def check_file(filename):
 def get_file_path(filename):
 	return config.SOURCE_CODE_FILEPATH + filename 
 
-def remove_comments_in_c(string):
-    string = re.sub(re.compile("/\*.*?\*/",re.DOTALL ) ,"" ,string) # remove all occurance streamed comments (/*COMMENT */) from string
-    string = re.sub(re.compile("//.*?\n" ) ,"" ,string) # remove all occurance singleline comments (//COMMENT\n ) from string
-    return string
+def remove_comments_using_re(string, extension):
+	re_comment_strings = re_comment_strings_for_py if extension == 'py' else re_comment_strings_for_c_and_cpp 
+	string = re.sub(re.compile(re_comment_strings["MULTI_LINES_COMMENT"],re.DOTALL ) ,"\n" ,string) # remove all occurance streamed comments (/*COMMENT */) from string
+	string = re.sub(re.compile(re_comment_strings["SINGLE_LINE_COMMENT"] ) ,"\n" ,string) # remove all occurance singleline comments (//COMMENT\n ) from string
+	return string
 
 def join_lines(lines_list):
 	return functools.reduce(lambda str_a, str_b: str_a + str_b, lines_list)
 
 def split_lines(lines_string):
 	lines_list=lines_string.split('\n')
-	return list(map(lambda x: x + '\n', lines_list))
+	return list(map(lambda x: x + '\n', filter(lambda x: x, lines_list)))
 
 
-def remove_comments(lines_list):
+def remove_comments(lines_list, file_extension):
 	lines_string = join_lines(lines_list)
-	lines_string = remove_comments_in_c(lines_string)
+	lines_string = remove_comments_using_re(lines_string, file_extension)
 	return split_lines(lines_string)
 
 
@@ -53,7 +65,7 @@ def get_readlines(filepath, remove_comments_bool):
 
 	#Only for type one
 	if remove_comments_bool:
-		lines = remove_comments(lines)
+		lines = remove_comments(lines, filepath.split('.')[-1])
 	return lines
 
 def extract_files(filename_one, filename_two, remove_comments_bool):
