@@ -1,6 +1,5 @@
 import config
 import os
-# import termcolor
 import functools
 import re
 
@@ -14,6 +13,14 @@ re_comment_strings_for_py = {
 	"SINGLE_LINE_COMMENT" : "\#.*?\n"
 }
 
+TERMCOLORS = {
+	"RED"   : "\033[1;31m",  
+	"BLUE"  : "\033[1;34m",
+	"CYAN"  : "\033[1;36m",
+	"GREEN" : "\033[0;32m",
+	"RESET" : "\033[0;0m",
+	"BOLD"   : "\033[;1m"
+}
 
 def check_file(filename):
 	''' Checks if the file is written in allowed programming languages
@@ -81,6 +88,6 @@ def get_plagiarism_percentage(number_of_lines_copied, total_number_of_lines):
 def print_diff(plagiarism_result, diff_symbol):
 	for line in plagiarism_result:
 		if line[0] == ' ':
-			print(termcolor.colored(line, "red"), end="")
+			print(TERMCOLORS["RED"] + line, end = "")
 		elif line[0] == diff_symbol:
-			print(termcolor.colored(line, "green"), end="")
+			print(TERMCOLORS["GREEN"] + line, end = "")
