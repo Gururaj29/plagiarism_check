@@ -1,6 +1,6 @@
 import config
 import os
-import termcolor
+# import termcolor
 import functools
 import re
 
@@ -35,7 +35,7 @@ def check_file(filename):
 	return True
 
 def get_file_path(filename):
-	return config.SOURCE_CODE_FILEPATH + filename 
+	return config.SOURCE_CODE_FILEPATH + filename
 
 def remove_comments_using_re(string, extension):
 	re_comment_strings = re_comment_strings_for_py if extension == 'py' else re_comment_strings_for_c_and_cpp 
