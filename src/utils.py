@@ -9,7 +9,7 @@ re_comment_strings_for_c_and_cpp = {
 }
 
 re_comment_strings_for_py = {
-	"MULTI_LINES_COMMENT" : "/\*.*?\*/",
+	"MULTI_LINES_COMMENT" : "\'\'\'.*?\'\'\'",
 	"SINGLE_LINE_COMMENT" : "\#.*?\n"
 }
 
@@ -59,6 +59,7 @@ def split_lines(lines_string):
 
 
 def remove_comments(lines_list, file_extension):
+	lines_list[-1] += '\n' # Add an extra line at the end of the line
 	lines_string = join_lines(lines_list)
 	lines_string = remove_comments_using_re(lines_string, file_extension)
 	return split_lines(lines_string)
@@ -69,7 +70,6 @@ def get_readlines(filepath, remove_comments_bool):
 		return None
 	with open(filepath) as file:
 		lines = file.readlines()
-
 	#Only for type one
 	if remove_comments_bool:
 		lines = remove_comments(lines, filepath.split('.')[-1])
