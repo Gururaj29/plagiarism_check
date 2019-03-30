@@ -1,5 +1,6 @@
 import config
 import os
+import termcolor
 
 def check_file(filename):
 	''' Checks if the file is written in allowed programming languages
@@ -23,18 +24,27 @@ def check_file(filename):
 def get_file_path(filename):
 	return config.SOURCE_CODE_FILEPATH + filename 
 
-def get_readlines(filepath):
+def remove_comments(list_lines):
+	return list_lines
+
+def get_readlines(filepath, remove_comments_bool):
 	if not check_file(filepath):
 		return None
 	with open(filepath) as file:
-		return file.readlines()
+		lines = file.readlines()
 
-def extract_files(filename_one, filename_two):
+	#Only for type one
+	if remove_comments_bool:
+		remove_comments(lines)
+
+	return lines
+
+def extract_files(filename_one, filename_two, remove_comments_bool):
 	''' Receives the filenames as strings, returns list of lines
 	'''
 	filepath_one = get_file_path(filename_one)
 	filepath_two = get_file_path(filename_two)
-	return get_readlines(filepath_one), get_readlines(filepath_two)
+	return get_readlines(filepath_one, remove_comments_bool), get_readlines(filepath_two, remove_comments_bool)
 
 def get_plagiarism_percentage(number_of_lines_copied, total_number_of_lines):
 	return (number_of_lines_copied*100)/ total_number_of_lines
