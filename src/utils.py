@@ -1,6 +1,6 @@
 import config
 import os
-import termcolor
+# import termcolor
 import functools
 import re
 
@@ -24,7 +24,7 @@ def check_file(filename):
 	return True
 
 def get_file_path(filename):
-	return config.SOURCE_CODE_FILEPATH + filename 
+	return config.SOURCE_CODE_FILEPATH + filename
 
 def remove_comments_in_c(string):
     string = re.sub(re.compile("/\*.*?\*/",re.DOTALL ) ,"" ,string) # remove all occurance streamed comments (/*COMMENT */) from string

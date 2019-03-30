@@ -1,4 +1,3 @@
-import termcolor
 import difflib
 import pprint
 import os
@@ -7,7 +6,7 @@ from src import utils
 
 def compare_files(filename_one, filename_two, type_one = False):
 	''' Receives filenames as parameters, compares the list of lines received
-		Returns the tuple containing the plagiarism percentage 
+		Returns the tuple containing the plagiarism percentage
 	'''
 	file_one, file_two = utils.extract_files(filename_one, filename_two, type_one)
 	if file_one is None or file_two is None:
@@ -15,7 +14,7 @@ def compare_files(filename_one, filename_two, type_one = False):
 	result = []
 	for line in difflib.unified_diff(file_one, file_two):
 		result.append(line)
-		
+
 	if not result:
 		# If there is no result, then it's 100% same file
 		return 100.0, 100.0
