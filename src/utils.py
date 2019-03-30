@@ -1,9 +1,31 @@
 import config
+import os
+
+def check_file(filename):
+	''' Checks if the file is written in allowed programming languages
+	'''
+	file_parts = filename.split('.')
+	if len(file_parts) != 2:
+		print(filename + ": File name is not correct")
+		return False
+
+	# Checks for extension
+	if file_parts[1] not in config.get_extensions():
+		print(filename + ": Programming language is not supported")
+		return False
+
+	if not os.path.exists(filename):
+		print(filename + ": File does not exist")
+		return False
+
+	return True
 
 def get_file_path(filename):
 	return config.SOURCE_CODE_FILEPATH + filename 
 
 def get_readlines(filepath):
+	if not check_file(filepath):
+		return None
 	with open(filepath) as file:
 		return file.readlines()
 

@@ -3,13 +3,15 @@ import difflib
 import pprint
 import os
 import config
-import utils
+from src import utils
 
 def compare_files(filename_one, filename_two):
 	''' Receives filenames as parameters, compares the list of lines received
 		Returns the tuple containing the plagiarism percentage 
 	'''
 	file_one, file_two = utils.extract_files(filename_one, filename_two)
+	if file_one is None or file_two is None:
+		return None, None
 	result = []
 	for line in difflib.unified_diff(file_one, file_two):
 		result.append(line)
