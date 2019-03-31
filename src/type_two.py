@@ -10,17 +10,16 @@ def token_generator(file, tokens_list):
     return 0
 
 
-def simple(filepath):
-    tok = custom_tokenizer.Tokenizer(filepath)
+def c_token_generator(filename):
+    tok = custom_tokenizer.Tokenizer(utils.get_file_path(filename))
     results = tok.full_tokenize()
-    return tokenizer.compress_tokens(results)
-
+    return results
 
 def compare_files(filename_one, filename_two):
     """ Receives filenames as parameters, compares the list of lines received
 		Returns the tuple containing the plagiarism percentage
     """
-    if utils.check_file(filename_one) and utils.check_file(filename_two):
+    if utils.check_file(utils.get_file_path(filename_one)) and utils.check_file(utils.get_file_path(filename_two)):
         file_one = open(utils.get_file_path(filename_one))
         file_two = open(utils.get_file_path(filename_two))
 
@@ -30,8 +29,8 @@ def compare_files(filename_one, filename_two):
             token_generator(file_one, file_one_tokens)
             token_generator(file_two, file_two_tokens)
         else:
-            print(simple(filename_one))
-            return 0
+            file_one_tokens = c_token_generator(filename_one)
+            file_two_tokens = c_token_generator(filename_two)
             
         counter_one = Counter(file_one_tokens)
         counter_two = Counter(file_two_tokens)

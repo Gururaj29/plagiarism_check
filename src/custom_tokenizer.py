@@ -3,7 +3,7 @@ import clang.enumerations
 import csv
 
 # set the config
-clang.cindex.Config.set_library_path("/usr/lib")
+clang.cindex.Config.set_library_path("/usr/lib/llvm-6.0/lib")
 
 class Tokenizer:
     # creates the object, does the inital parse
@@ -145,7 +145,7 @@ class Tokenizer:
 
 # read in and process the CSV file (once)
 token_map = {}
-handle = open("preprocessors/tokenizer/token_map.csv", "r")
+handle = open("src/token_map.csv", "r")
 csv_reader = csv.reader(handle)
 for row in csv_reader:
     token_map[row[0]] = chr(int(row[1]))
