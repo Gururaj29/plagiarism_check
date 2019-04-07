@@ -5,7 +5,7 @@ from src import custom_tokenizer
 
 def token_generator(file, tokens_list):
     tok_callback = generate_tokens(file.readline)
-    for toktype, ttext, (slineno, scol), (elineno, ecol), ltext in tok_one:
+    for toktype, ttext, (slineno, scol), (elineno, ecol), ltext in tok_callback:
         tokens_list.append(toktype)
     return 0
 
