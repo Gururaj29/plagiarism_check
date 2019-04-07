@@ -38,7 +38,7 @@ def compare_files(filename_one, filename_two):
         plagiarism_counter = counter_one & counter_two
         number_of_lines_plagiarised = sum(plagiarism_counter.values())
         file_one_plagiarism_percentage = utils.get_plagiarism_percentage(number_of_lines_plagiarised * 2, sum(counter_one.values()) + sum(counter_two.values()))
-        return file_one_plagiarism_percentage
+        return file_one_plagiarism_percentage, file_one_plagiarism_percentage
     else:
         print("Error file format not supported")
 
