@@ -1,6 +1,6 @@
 from src import utils
 from tokenize import generate_tokens
-from src import pycode_similar
+from src import pycode_ast
 
 def compare_files(filename_one, filename_two):
 	""" Receives filenames as parameters, compares the list of lines received
@@ -12,7 +12,7 @@ def compare_files(filename_one, filename_two):
 
 		if filename_one.split(".")[1] == "py":
 			try:
-				results = pycode_similar.detect([file_one.read(), file_two.read()])
+				results = pycode_ast.detect([file_one.read(), file_two.read()])
 			except:
 				print('Error in type_three for python')
 				return
