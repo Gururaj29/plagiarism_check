@@ -20,7 +20,7 @@ def compare_files(filename_one, filename_two, type_one = False):
 	# Exclude the initial three default lines
 	result = result[3:]
 
-	#prints the results for file one
+	# prints the results for file one
 	# print("Source code one: ")
 	# utils.print_diff(result, '-')
 	# print("-" * 40)
