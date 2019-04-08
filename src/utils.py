@@ -83,7 +83,7 @@ def extract_files(filename_one, filename_two, remove_comments_bool):
 	return get_readlines(filepath_one, remove_comments_bool), get_readlines(filepath_two, remove_comments_bool)
 
 def get_plagiarism_percentage(number_of_lines_copied, total_number_of_lines):
-	return (number_of_lines_copied*100)/ total_number_of_lines
+	return round((number_of_lines_copied*100)/ total_number_of_lines, 2)
 
 def print_diff(plagiarism_result, diff_symbol):
 	for line in plagiarism_result:
