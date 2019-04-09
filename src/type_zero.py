@@ -41,3 +41,7 @@ def extract_files(filename_1, filename_2, type_one):
 
 def plagiarism_percentage(total_copied_lines_per_file, file_one_len, file_two_len):
 	return utils.get_plagiarism_percentage(total_copied_lines_per_file * 2, file_one_len + file_two_len)
+
+#Only for the unit tests
+def get_check_file_handler():
+	return utils.check_file
