@@ -55,7 +55,7 @@ def join_lines(lines_list):
 
 def split_lines(lines_string):
 	lines_list=lines_string.split('\n')
-	return list(map(lambda x: x.rstrip() + '\n', filter(lambda x: x and x.strip(), lines_list)))
+	return list(map(lambda x: x.rstrip() + '\n', filter(lambda x: x.strip(), lines_list)))
 
 
 def remove_comments(lines_list, file_extension):

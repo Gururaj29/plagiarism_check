@@ -1,12 +1,35 @@
-Source Code Plagiarism System
+# Source Code Plagiarism System
 
-`Initial set up for this project`
+This repository contains code for plagiarism engine which is being used for building a plagiarism tool to help professors conduct and evaluate assignments fairly 
 
+## How to contribute
 
-Dependencies
-	pip3 install clang 
-	pip3 install flask
-	pip3 install pymongo
-	pip3 install pandas
-	pip3 install dnspython
-	sudo apt-get install clang libclang-dev
+1. Install `python3` and `pip3`
+
+2. Clone the repository
+
+   ```
+   git clone https://github.com/Gururaj29/plagiarism_check
+   ```
+
+   Enter the repository
+   
+   ```
+   cd plagiarism_check
+   ```
+
+3. Install all the dependencies by running this command:
+
+   ``` 
+   pip3 install -r requirements.txt
+   ```
+
+4. Run `main.py`
+
+## How to test
+
+1. Run all the unit tests and integration tests by running this command:
+
+   ```
+   make test
+   ```
