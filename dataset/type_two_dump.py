@@ -38,15 +38,19 @@ def merge(arr, l, m, r):
 
         k += 1
 
-    for z in range(i, n1):
+    while i < n1:
 
-        arr[k] = L[z]
+        arr[k] = L[i]
+
+        i += 1
 
         k += 1
 
-    for z in range(j, n2):
+    while j < n2:
 
-        arr[k] = R[z]
+        arr[k] = R[j]
+
+        j += 1
 
         k += 1
 
