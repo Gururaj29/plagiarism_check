@@ -21,14 +21,14 @@ def compare_files(filename_one, filename_two, type_one = False):
 	result = result[3:]
 
 	#prints the results for file one
-	print("Source code one: ")
-	utils.print_diff(result, '-')
-	print("-" * 40)
+	# print("Source code one: ")
+	# utils.print_diff(result, '-')
+	# print("-" * 40)
 
 	# #prints the results for file two
-	print("Source code two: ")
-	utils.print_diff(result, '+')
-	print("-" * 40)
+	# print("Source code two: ")
+	# utils.print_diff(result, '+')
+	# print("-" * 40)
 
 	number_of_lines_plagiarised = len(file_one) - len(list(filter(lambda x: x[0] == '-', result)))
 	file_one_plagiarism_percentage = plagiarism_percentage(number_of_lines_plagiarised, len(file_one), len(file_two))
