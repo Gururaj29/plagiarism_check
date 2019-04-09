@@ -1,10 +1,5 @@
-#include<stdio.h>
-#include<stdlib.h>
-
-/*
-
-*/
-int main() {
-	int a, c;
-	printf("%d\n", a);
+void multi(int n, int c){
+	int a = 10;
+	int b = 10;
+	int c = a*b;
 }
