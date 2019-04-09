@@ -1,4 +1,6 @@
 {
 	"source_code_filepath" : "dataset/",
-	"allowed_extensions" : [ "py" , "c", "cpp"]
+	"allowed_extensions" : [ "py" , "c", "cpp"],
+	"test_code_filepath" : "test_codes/",
+	"PYTHON_TEST_COMMAND" : "python3 -m unittest -v "
 }
