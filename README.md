@@ -24,7 +24,13 @@ This repository contains code for plagiarism engine which is being used for buil
    pip3 install -r requirements.txt
    ```
 
-4. Run `main.py`
+4. If you are using `Ubuntu` , then run this command to install clang dependencies:
+	
+	```
+	sudo apt-get install clang libclang-dev
+	```
+
+5. Run `main.py`
 
 ## How to test
 
