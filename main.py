@@ -3,8 +3,8 @@ from src import type_one
 from src import type_two
 from src import type_three
 
-file_one  = "File_1.py"
-file_two = "File_1_NoComments.py"
+file_one  = "sample_one.c"
+file_two = "sample_two.c"
 
 print(type_zero.compare_files(file_one, file_two ))
 print(type_one.compare_files(file_one, file_two))
